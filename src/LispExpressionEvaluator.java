@@ -124,28 +124,27 @@ public class LispExpressionEvaluator
     //  	Apply the operator to the operands on currentOpStack
     //          Push the result into tokensStack
     //
-    private void evaluateCurrentOperation()
-    {
+    private void evaluateCurrentOperation() {
         // add statements
         Object currentOperation;                  // stores the operation popped from  tokenStack AEG
-        Double result = 0.0;                      // stores the algebraic result of the expression AEG
+        Double result;                      // stores the algebraic result of the expression AEG
         //Boolean operand = true;
 
-        if (tokensStack.empty()){
+        if (tokensStack.empty()) {
             throw new LispExpressionException("The token stack is empty, nothing to evaluate.");
         }
-
+        //currentOperation = tokensStack.peek();
         currentOperation = tokensStack.pop();
 
-        while (currentOperation instanceof String ) {
+        while (currentOperation instanceof String) {
             try {
                 double value = Double.parseDouble((String) currentOperation);
                 currentOpStack.push(value);
             } catch (NumberFormatException nfe) {
                 System.out.println(nfe.getMessage());
             }
-            if(tokensStack.empty() ){
-                throw new LispExpressionException("Operator doesn't exist or can't be found.");
+            if (tokensStack.empty()) {
+                throw new LispExpressionException("Operand doesn't exist or can't be found.");
             }
             currentOperation = tokensStack.pop();
         }
@@ -172,85 +171,106 @@ public class LispExpressionEvaluator
         //    }
         //}
 
-        String aToken = currentOperation.toString() ;
+        String aToken = currentOperation.toString();
         char item = aToken.charAt(0);
 
-        // use switch statements to evaluate the expression
-        switch (item) {
-            case '+':
-                //result = currentOpStack.pop();
-                result = 0.0;
-
-                while (!currentOpStack.empty()) {
-                    result += currentOpStack.pop();
-                }
-                tokensStack.push(String.valueOf(result));
-                break;
-            case '-':
-                result = 0.0;
-                result = currentOpStack.pop();
-
-                if (currentOpStack.empty()) {
-                    result = -result;
-                    tokensStack.push(String.valueOf(result));
-                } else {
-                    while(!currentOpStack.empty()){
-                        result -= currentOpStack.pop();
-                    }
-                    tokensStack.push(String.valueOf(result));
-                }
-
-                //result = 0.0;
-                //result = currentOpStack.pop();
-                //
-                //if (currentOpStack.empty()){
-                //    result = -result;
-                //    tokensStack.push(String.valueOf(result));
-                //}
-                //
-                ////if (currentOpStack.size() == 1 && result == 0.0) {
-                ////    result = -1.0 * currentOpStack.pop();
-                ////}
-                //    //result = currentOpStack.pop();
-                //
-                //    while (!currentOpStack.empty()) {
-                //        result -= currentOpStack.pop();
-                //    }
-                //tokensStack.push(String.valueOf(result));
-                break;
-            case '/':
-                result = 1.0;
-                result = currentOpStack.pop();
-                if (currentOpStack.empty()) {
-                    if (result == 0) {
-                        throw new LispExpressionException("Cannot divide by zero");
-                    }
-                    result = 1 / result;
-                    tokensStack.push(String.valueOf(result));
-                } else {
-                    //result = currentOpStack.pop();
-                    while (!currentOpStack.empty()) {
-                        if (currentOpStack.peek() == 0) {
-                            throw new LispExpressionException("cannot divide by zero");
-                        }
-                        result /= currentOpStack.pop();
-                    }
-                    tokensStack.push(String.valueOf(result));
-                }
-                break;
-            case '*':
-                //result = currentOpStack.pop();
-                result = 1.0;
-                while (!currentOpStack.empty()) {
-                    result *= currentOpStack.pop();
-                }
-                tokensStack.push(String.valueOf(result));
-                break;
-            default:
-                throw new LispExpressionException(item + " not a legal operator");
+        //if(currentOpStack.empty()) {
+        //    throw new LispExpressionException("Tried to perform the operation but no operand was found.");
+        //}
+        //System.out.println("Value before while loop:  " + currentOpStack.peek());
+        if (currentOpStack.empty()){
+            tokensStack.clear(); // if we find null in the currentOpStack, the program needs to stop executing and reset the tokenStack so we can move onto the next test case.
+            //System.out.println("OpStack value was null, exiting");
+            //System.exit(1);
         }
-        //tokensStack.push(result); // I'm pushing result = null onto the tokenStack here. Why?
-    }
+             while (!currentOpStack.empty()) {
+            // use switch statements to evaluate the expression
+            switch (item) {
+                case '+':
+                    //result = currentOpStack.pop();
+                    result = 0.0;
+
+                    while (!currentOpStack.empty()) {
+                        result += currentOpStack.pop();
+                    }
+                    tokensStack.push(String.valueOf(result));
+                    break;
+                case '-':
+                    //if (currentOpStack.empty()) {
+                    //result = 0.0;
+                    result = currentOpStack.pop();
+
+                    if (currentOpStack.empty()) {
+                        result = -result;
+                        tokensStack.push(String.valueOf(result));
+                    } else {
+                        while (!currentOpStack.empty()) {
+                            result -= currentOpStack.pop();
+                        }
+                        tokensStack.push(String.valueOf(result));
+                    }
+
+                    //result = 0.0;
+                    //result = currentOpStack.pop();
+                    //
+                    //if (currentOpStack.empty()){
+                    //    result = -result;
+                    //    tokensStack.push(String.valueOf(result));
+                    //}
+                    //
+                    ////if (currentOpStack.size() == 1 && result == 0.0) {
+                    ////    result = -1.0 * currentOpStack.pop();
+                    ////}
+                    //    //result = currentOpStack.pop();
+                    //
+                    //    while (!currentOpStack.empty()) {
+                    //        result -= currentOpStack.pop();
+                    //    }
+                    //tokensStack.push(String.valueOf(result));
+                    break;
+                case '/':
+                    //System.out.println("Value of item at top of stack when entering '/': " + currentOpStack.peek());
+                        result = currentOpStack.pop();
+                        if (result == 0) {
+                            tokensStack.clear();
+                            throw new LispExpressionException("Cannot divide by zero (A)");
+                        }
+                        if (currentOpStack.empty()) {
+                            result = 1 / result;
+                            tokensStack.push(String.valueOf(result));
+                        } else {
+                            //result = currentOpStack.pop();
+                            while (!currentOpStack.empty()) {
+                                if (currentOpStack.peek() == 0) {
+                                    tokensStack.clear();
+                                    throw new LispExpressionException("cannot divide by zero (C)");
+                                }
+                                result /= currentOpStack.pop();
+
+                            }
+                            tokensStack.push(String.valueOf(result));
+                        }
+
+                    break;
+                case '*':
+                    //result = currentOpStack.pop();
+                    result = 1.0;
+                    while (!currentOpStack.empty()) {
+                        result *= currentOpStack.pop();
+                    }
+                    //do {
+                    //    result = 1.0;
+                    //    result *= currentOpStack.pop();
+                    //}while(!currentOpStack.empty());
+                    //
+                    tokensStack.push(String.valueOf(result));
+                    break;
+                default:
+                    throw new LispExpressionException(item + " not a legal operator");
+            }
+            //tokensStack.push(result); // I'm pushing result = null onto the tokenStack here. Why?
+        } //end while
+    } //end evaluateCurrentOperation();
 
 
 
@@ -307,7 +327,7 @@ public class LispExpressionEvaluator
                     // Get next token, only one char in string token
                     String aToken = currentExprScanner.next();
                     //System.out.println("Other: " + aToken);
-                    char item = aToken.charAt(0);
+                    char item = aToken.charAt(0); // should we handle the if (currentOpStack.empty()) here?
 
                     switch (item) {
                         // Step 3: If you see "(", next token should be an operator
@@ -347,6 +367,7 @@ public class LispExpressionEvaluator
                             //if (currentOpStack.empty()){
                             //    throw new LispExpressionException("Expression is unbalanced, nothing to evaluate.");
                             //}
+                            //System.out.println(currentOpStack.peek());
                             evaluateCurrentOperation();
                             break;
                         default:  // error
@@ -362,7 +383,9 @@ public class LispExpressionEvaluator
         //         is the result of the expression.
         //
         //         return result
-
+        if(tokensStack.empty()){
+            throw new LispExpressionException("Nothing to return, possible syntax error");
+        }
         return Double.parseDouble(String.valueOf(tokensStack.pop())); // return result
     }
 
