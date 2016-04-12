@@ -1,24 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="62d630cc-d0ed-4fc6-ac32-9dd9a2691e0a" name="Default" comment="Added a try-catch block before the return statement to handle erroneous return values when exceptions were thrown. Removed some commented code.">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/PJ2/LinkedStack.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/PJ2/LispExpressionEvaluator.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/PJ2/LispExpressionException.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/PJ2/Node.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/PJ2/PJ2_Test.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/PJ2/StackInterface.java" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/PJ2/LinkedStack.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/PJ2/LispExpressionEvaluator.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/PJ2/LispExpressionException.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/PJ2/Node.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/PJ2/StackInterface.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/LinkedStack.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/LispExpressionEvaluator.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/LispExpressionException.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/Node.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/StackInterface.java" afterPath="" />
+    <list default="true" id="62d630cc-d0ed-4fc6-ac32-9dd9a2691e0a" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/PJ2/LinkedStack.java" afterPath="$PROJECT_DIR$/src/PJ2/LinkedStack.java" />
     </list>
     <ignored path="PJ2.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -76,8 +61,8 @@
       <file leaf-file-name="LinkedStack.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/PJ2/LinkedStack.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.21939394">
-              <caret line="27" column="14" selection-start-line="27" selection-start-column="14" selection-end-line="27" selection-end-column="14" />
+            <state vertical-scroll-proportion="0.33333334">
+              <caret line="28" column="22" selection-start-line="28" selection-start-column="22" selection-end-line="28" selection-end-column="22" />
               <folding />
             </state>
           </provider>
@@ -122,6 +107,7 @@
         <option value="$PROJECT_DIR$/src/PJ2/PJ2_Test.java" />
         <option value="$PROJECT_DIR$/src/PJ2/StackInterface.java" />
         <option value="$PROJECT_DIR$/src/PJ2/LispExpressionEvaluator.java" />
+        <option value="$PROJECT_DIR$/src/PJ2/LinkedStack.java" />
       </list>
     </option>
   </component>
@@ -580,7 +566,13 @@
       <option name="project" value="LOCAL" />
       <updated>1460490304792</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Added a try-catch block before the return statement to handle erroneous return values when exceptions were thrown. Removed some commented code.">
+      <created>1460495647185</created>
+      <option name="number" value="00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1460495647185</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -759,8 +751,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/PJ2/LinkedStack.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.21939394">
-          <caret line="27" column="14" selection-start-line="27" selection-start-column="14" selection-end-line="27" selection-end-column="14" />
+        <state vertical-scroll-proportion="0.33333334">
+          <caret line="28" column="22" selection-start-line="28" selection-start-column="22" selection-end-line="28" selection-end-column="22" />
           <folding />
         </state>
       </provider>
